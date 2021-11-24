@@ -426,7 +426,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        databaseImageName: [ 'mysql:5.6', 'mariadb:10.3' ]
+        databaseImageName: [ 'mysql:8.0', 'mariadb:10.3' ]
         suite: [ 
           repo, 
           fedprops, 
