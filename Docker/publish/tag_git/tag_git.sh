@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 # source all metadata files
 for file in  /extractedArtifacts/BuildMetadata/build_metadata_*.env ; do
@@ -13,7 +13,7 @@ done
 if [ -z "$WIKIBASE_BRANCH_NAME" ] || \
 [ -z "$RELEASE_VERSION" ] || \
 [ -z "$WMDE_RELEASE_VERSION" ] || \
-[ -z "$METADATA_WDQS_UI_COMMIT_HASH" ] || \
+[ -z "$METADATA_WDQS_FRONTEND_COMMIT_HASH" ] || \
 [ -z "$METADATA_WIKIBASE_COMMIT_HASH" ] || \
 [ -z "$METADATA_WIKIBASEMANIFEST_COMMIT_HASH" ] || \
 [ -z "$WORKFLOW_RUN_NUMBER" ] ; then
