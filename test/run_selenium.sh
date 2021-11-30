@@ -28,12 +28,22 @@ if [ -f "$SUITE_OVERRIDE" ]; then
     SUITE_CONFIG="$DEFAULT_SUITE_CONFIG -f $SUITE_OVERRIDE"
 fi
 
-bash test_stop.sh
+# TEST_EXTERNAL skips stopping the test-suite containers
+# It is up to the caller to make sure the correct servers are ready for testing
+if [ -z "$TEST_EXTERNAL" ]; then
+    bash test_stop.sh
+fi
 
 # start container with settings
 STRING_DATABASE_IMAGE_NAME=${DATABASE_IMAGE_NAME//[^a-zA-Z_0-9]/_}
 docker-compose $SUITE_CONFIG up -d --force-recreate
-docker-compose $SUITE_CONFIG logs -f --no-color > "log/wikibase.$STRING_DATABASE_IMAGE_NAME.$1.log" &
+LOG_FILE="log/wikibase.$STRING_DATABASE_IMAGE_NAME.$1.log"
+docker-compose $SUITE_CONFIG logs -f --no-color > $LOG_FILE &
+
+# se FOLLOW_TEST_LOG to something to follow the logs when tests run 
+if [ -n "$FOLLOW_TEST_LOG" ]; then
+    xfce4-terminal -e "docker-compose $SUITE_CONFIG logs -f" &
+fi
 
 # run status checks and wait until containers start
 docker-compose $SUITE_CONFIG -f docker-compose-curl-test.yml build wikibase-test
