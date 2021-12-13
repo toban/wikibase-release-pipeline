@@ -53,6 +53,9 @@ requirements:
 	python3 build/requirements/build_version_requirements.py
 	cat artifacts/built_versions.log
 
+test-image:
+	bash build/build_test_image_docker.sh
+
 wikibase:
 	bash update_cache.sh base
 	eval ". ./build/build_wikibase.sh; bash build/build_wikibase_docker.sh ${WIKIBASE_IMAGE_NAME}"
@@ -87,4 +90,4 @@ clean:
 	rm -rf artifacts/*.log
 	rm -rf artifacts/*.env
 
-all: wikibase wikibase_bundle elasticsearch wdqs wdqs-frontend wdqs-proxy quickstatements
+all: test-image wikibase wikibase_bundle elasticsearch wdqs wdqs-frontend wdqs-proxy quickstatements

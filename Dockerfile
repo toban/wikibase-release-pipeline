@@ -4,6 +4,7 @@ RUN apk add --no-cache git make bash python3 py3-pip && \
 WORKDIR "/app/"
 ENV XDG_CACHE_HOME=/app/cache
 ADD Docker/build/ Docker/build/
+ADD Docker/test/ Docker/test/
 ADD build/ build
 ADD .github/workflows/built_and_test.yml config.yml
 ADD variables.env variables.env

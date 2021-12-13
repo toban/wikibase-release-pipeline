@@ -34,11 +34,14 @@ STRING_DATABASE_IMAGE_NAME=${DATABASE_IMAGE_NAME//[^a-zA-Z_0-9]/_}
 docker-compose $SUITE_CONFIG up -d --force-recreate
 docker-compose $SUITE_CONFIG logs -f --no-color > "log/wikibase.$STRING_DATABASE_IMAGE_NAME.$1.log" &
 
-docker-compose \
-    $SUITE_CONFIG -f docker-compose-selenium-test.yml \
-    build \
-    --build-arg SKIP_INSTALL_SELENIUM_TEST_DEPENDENCIES="$SKIP_INSTALL_SELENIUM_TEST_DEPENDENCIES" \
-    wikibase-selenium-test
+# If the TEST_IMAGE_NAME is not set already, lets build it
+if [ -z "$TEST_IMAGE_NAME" ]; then
+    export TEST_IMAGE_NAME="$DEFAULT_TEST_IMAGE_NAME:latest"
+    echo "Building test image $TEST_IMAGE!"
+    cd ..
+    make test-image
+    cd - > /dev/null
+fi
 
 # run status checks and wait until containers start
 docker-compose $SUITE_CONFIG -f docker-compose-curl-test.yml build wikibase-test
