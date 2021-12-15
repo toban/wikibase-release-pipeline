@@ -550,7 +550,7 @@ jobs:
           path: test/log
 
   test_example:
-    runs-on: ubuntu-latest
+    runs-on: macos-11
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
