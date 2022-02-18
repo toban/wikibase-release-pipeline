@@ -67,7 +67,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ github.token }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Store release version docker image on GHCR
         if: github.ref == 'refs/heads/main'
@@ -137,7 +137,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ github.token }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Store release version docker image on GHCR
         if: github.ref == 'refs/heads/main'
@@ -205,7 +205,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ github.token }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Store release version docker image on GHCR
         if: github.ref == 'refs/heads/main'
@@ -253,7 +253,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ github.token }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Store release version docker image on GHCR
         if: github.ref == 'refs/heads/main'
@@ -299,7 +299,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ github.token }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Store release version docker image on GHCR
         if: github.ref == 'refs/heads/main'
@@ -374,7 +374,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ github.token }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Store release version docker image on GHCR
         if: github.ref == 'refs/heads/main'
@@ -420,7 +420,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ github.token }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Store release version docker image on GHCR
         if: github.ref == 'refs/heads/main'
